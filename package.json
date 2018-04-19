@@ -1,0 +1,51 @@
+{
+  "name": "react-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurohune538/react-redux-boilerplate.git"
+  },
+  "author": "kurohune538",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kurohune538/react-redux-boilerplate/issues"
+  },
+  "homepage": "https://github.com/kurohune538/react-redux-boilerplate#readme",
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.1.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-form": "^7.3.0",
+    "styled-components": "^3.2.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.3.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.12.1"
+  }
+}
