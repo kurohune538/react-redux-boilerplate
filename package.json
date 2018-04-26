@@ -5,11 +5,13 @@
   "author": "kurohune538",
   "main": "index.js",
   "scripts": {
-    // "precommit": "lint-staged",
+    "precommit": "lint-staged",
     "test": "jest --no-cache",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
+    "@storybook/addon-actions": "^3.4.2",
+    "@storybook/react": "^3.4.2",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -17,13 +19,14 @@
     "react-hot-loader": "^4.1.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.0",
+    "redux-actions": "^2.3.0",
     "redux-form": "^7.3.0",
     "styled-components": "^3.2.6"
   },
   "devDependencies": {
-    "@storybook/react": "^3.4.2",
     "autoprefixer": "^8.3.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -32,8 +35,6 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -53,7 +54,6 @@
     "postcss-loader": "^2.1.4",
     "postcss-smart-import": "^0.7.6",
     "prettier": "^1.12.1",
-    "redux-actions": "^2.3.0",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
@@ -69,10 +69,7 @@
   "homepage": "https://github.com/kurohune538/react-redux-boilerplate#readme",
   "license": "ISC",
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"]
   },
   "repository": {
     "type": "git",
