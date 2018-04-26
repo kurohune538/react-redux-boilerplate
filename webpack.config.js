@@ -1,16 +1,28 @@
 const path = require("path");
+const webpack = require("webpack");
+
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const autoprefixer = require("autoprefixer");
+const nested = require("postcss-nested");
+const StyleLintPlugin = require("stylelint-webpack-plugin");
+
+const rootDir = path.resolve(__dirname);
+const outputPath = path.resolve(rootDir, "build");
+const outputPublicPath = "/public/";
+
+const env = process.env.NODE_ENV;
 
 module.exports = {
-  // モード値を production に設定すると最適化された状態で、
-  // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: "development",
+  watch: env === "develop",
+  context: rootDir,
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: "./src/main.js",
+  entry: "./src/index.js",
   // ファイルの出力設定
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    path: outputPath,
+    filename: "bundle.js",
+    publicPath: outputPublicPath,
   },
   module: {
     rules: [
@@ -19,24 +31,42 @@ module.exports = {
         use: [
           {
             loader: "babel-loader",
-            options: {
-              presets: [
-                // env を指定することで、ES2017 を ES5 に変換。
-                // {modules: false}にしないと import 文が Babel によって CommonJS に変換され、
-                // webpack の Tree Shaking 機能が使えない
-                [
-                  "env",
-                  {
-                    modules: false,
-                  },
-                ],
-                "react",
-              ],
-            },
           },
         ],
         exclude: /node_modules/,
       },
     ],
   },
+  // プラグインの設定
+  plugins:
+    env === "develop"
+      ? [
+          new ExtractTextPlugin({
+            filename: "../css/sp/[name].css",
+          }),
+          new StyleLintPlugin(),
+          new webpack.LoaderOptionsPlugin({
+            options: {
+              plugins: [nested(), autoprefixer({ browsers: ["last 2 versions"] })],
+            },
+          }),
+        ]
+      : [
+          new webpack.optimize.UglifyJsPlugin({
+            comments: true,
+            compress: {
+              warnings: false,
+              drop_console: true,
+            },
+          }),
+          new ExtractTextPlugin({
+            filename: "../css/sp/[name].css",
+          }),
+          new StyleLintPlugin(),
+          new webpack.LoaderOptionsPlugin({
+            options: {
+              plugins: [nested(), autoprefixer({ browsers: ["last 2 versions"] })],
+            },
+          }),
+        ],
 };
